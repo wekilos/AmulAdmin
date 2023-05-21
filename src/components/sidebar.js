@@ -247,7 +247,7 @@ const SiderDemo = (props) => {
             </span>
           }
         >
-          <Menu.Item className="menuitem menuitem2" key="19">
+          {/* <Menu.Item className="menuitem menuitem2" key="19">
             <Link to="/posts">
               {dil === "tm"
                 ? "Gelen Habarlar"
@@ -255,7 +255,7 @@ const SiderDemo = (props) => {
                 ? "Полученные сообщения"
                 : "Recived messages"}
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item className="menuitem menuitem2" key="20">
             <Link to="/sendPost">
               {dil === "tm"
