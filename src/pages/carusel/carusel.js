@@ -1,6 +1,6 @@
 import { Popconfirm, Table, Button, message, Drawer } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { axiosInstance, BASE_URL } from "../../utils/axiosIntance";
+import { axiosInstance, BASE_URL, BASE_URL2 } from "../../utils/axiosIntance";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
 import DropFileInput from "./dropFile";
@@ -49,8 +49,8 @@ const Carousel = () => {
         <div>
           <img
             className="w-[200px] object-contain"
-            src={BASE_URL + record.img}
-            alt=""
+            src={BASE_URL2 + record.img}
+            alt="s"
           />
         </div>
       ),

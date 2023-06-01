@@ -1,6 +1,6 @@
 import { Popconfirm, Table, Button, message, Drawer } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { axiosInstance, BASE_URL } from "../../utils/axiosIntance";
+import { axiosInstance, BASE_URL, BASE_URL2 } from "../../utils/axiosIntance";
 import file from "../../img/file.png";
 import DropFileInput from "./dropFile";
 import { useHistory } from "react-router-dom";
@@ -139,7 +139,7 @@ const ActiveProducts = () => {
             return (
               <img
                 className="object-contain mr-2 h-[100px]"
-                src={BASE_URL + item.img}
+                src={BASE_URL2 + item.img}
                 alt="surat"
               />
             );
@@ -428,7 +428,7 @@ const ActiveProducts = () => {
                   </div>
                   <img
                     className="object-contain mb-2 w-full rounded-[12px]"
-                    src={BASE_URL + item?.img}
+                    src={BASE_URL2 + item?.img}
                   />
                 </div>
               );
