@@ -4,10 +4,12 @@ import { axiosInstance, BASE_URL, BASE_URL2 } from "../../utils/axiosIntance";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
 import DropFileInput from "./dropFile";
+import { useSizeComponents } from "../../components/sizeComponent";
 
 const Banner = () => {
   const { dil } = useContext(SebedimContext);
   const history = useHistory();
+  const [widths, height] = useSizeComponents();
   const [data, setData] = useState([]);
   const [order, setCategoryEdit] = useState({});
   const [edit, setEdit] = useState(false);
@@ -146,7 +148,7 @@ const Banner = () => {
   return (
     <>
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -192,7 +194,7 @@ const Banner = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}

@@ -22,12 +22,15 @@ import {
 
 import logo from "../img/logo.png";
 import { SebedimContext } from "../context/sebedim";
+import { useSizeComponents } from "./sizeComponent";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 const SiderDemo = (props) => {
   const { dil } = useContext(SebedimContext);
+
+  const [width, height] = useSizeComponents();
   return (
     // <div>
     <Sider

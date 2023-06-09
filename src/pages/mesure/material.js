@@ -4,9 +4,12 @@ import { axiosInstance, BASE_URL } from "../../utils/axiosIntance";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
 
+import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import { useSizeComponents } from "../../components/sizeComponent";
 const Material = () => {
   const { dil } = useContext(SebedimContext);
   const history = useHistory();
+  const [widths, height] = useSizeComponents();
   const [data, setData] = useState([]);
   const [order, setCategoryEdit] = useState({});
   const [edit, setEdit] = useState(false);
@@ -50,11 +53,17 @@ const Material = () => {
             type="primary"
             style={{ borderRadius: "7px" }}
           >
-            {dil === "tm"
-              ? "Maglumat"
-              : dil === "ru"
-              ? "Информация"
-              : "Information"}
+            {widths > 500 ? (
+              dil === "tm" ? (
+                "Maglumat"
+              ) : dil === "ru" ? (
+                "Информация"
+              ) : (
+                "Information"
+              )
+            ) : (
+              <InfoCircleOutlined />
+            )}
           </Button>
 
           <Popconfirm
@@ -68,7 +77,17 @@ const Material = () => {
               type="danger"
               style={{ borderRadius: "7px", marginLeft: "10px" }}
             >
-              {dil === "tm" ? "Öçürmek" : dil === "ru" ? "Удалит" : "Delete"}
+              {widths > 500 ? (
+                dil === "tm" ? (
+                  "Öçürmek"
+                ) : dil === "ru" ? (
+                  "Удалит"
+                ) : (
+                  "Delete"
+                )
+              ) : (
+                <DeleteOutlined />
+              )}
             </Button>
           </Popconfirm>
         </div>
@@ -124,7 +143,7 @@ const Material = () => {
   return (
     <>
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -170,7 +189,7 @@ const Material = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}

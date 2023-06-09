@@ -4,11 +4,13 @@ import { axiosInstance, BASE_URL } from "../../utils/axiosIntance";
 import file from "../../img/file.png";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
+import { useSizeComponents } from "../../components/sizeComponent";
 
 const Orders = () => {
   const history = useHistory();
   const { dil } = useContext(SebedimContext);
   const [data, setData] = useState([]);
+  const [widths, height] = useSizeComponents();
   const [openChange, setOpenChange] = useState(false);
   const [order, setOrder] = useState({});
   const [files, setFiles] = useState([]);
@@ -135,7 +137,7 @@ const Orders = () => {
   return (
     <>
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -190,7 +192,7 @@ const Orders = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}

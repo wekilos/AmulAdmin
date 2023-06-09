@@ -5,9 +5,13 @@ import file from "../../img/file.png";
 import DropFileInput from "./dropFile";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
+import { useSizeComponents } from "../../components/sizeComponent";
 
+import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";
 const ActiveProducts = () => {
   const { dil } = useContext(SebedimContext);
+
+  const [widths, height] = useSizeComponents();
   const history = useHistory();
   const [data, setData] = useState([]);
   const [openChange, setOpenChange] = useState(false);
@@ -107,89 +111,160 @@ const ActiveProducts = () => {
       });
   };
 
-  const columns = [
-    {
-      title: dil === "tm" ? "№" : dil === "ru" ? "№" : "№",
-      dataIndex: "code",
-    },
-    {
-      title: dil === "tm" ? "Ady" : dil === "ru" ? "Имя" : "Name",
-      dataIndex: "name_ru",
-      render: (text, record) => (
-        <div>{dil === "ru" ? record?.name_ru : record?.name_en}</div>
-      ),
-    },
-    {
-      title:
-        dil === "tm" ? "Düşündiriş" : dil === "ru" ? "Описание" : "Description",
-      dataIndex: "description_ru",
-      render: (text, record) => (
-        <div>
-          {dil === "ru" ? record.description_ru : record.description_en}
-        </div>
-      ),
-    },
-
-    {
-      title: dil === "tm" ? "Surat" : dil === "ru" ? "Картина" : "Picture",
-      dataIndex: "uploaded",
-      render: (text, record) => (
-        <div className="flex overflow-x-auto">
-          {record.Imgs?.map((item) => {
-            return (
-              <img
-                className="object-contain mr-2 h-[100px]"
-                src={BASE_URL2 + item.img}
-                alt="surat"
-              />
-            );
-          })}
-        </div>
-      ),
-    },
-
-    {
-      title: dil === "tm" ? "Hereket" : dil === "ru" ? "Действие" : "Action",
-      render: (text, record) => (
-        <div className="flex">
-          {/* <Popconfirm placement="top" title={"Are you sure"} onConfirm={handleConfirm} okText="Yes" cancelText="No">  */}
-          <Button
-            onClick={() => {
-              setOpenChange(true);
-              setOrder(record);
-            }}
-            type="primary"
-            style={{ borderRadius: "7px" }}
-          >
-            {dil === "tm"
-              ? "Maglumat"
-              : dil === "ru"
-              ? "Информация"
-              : "Information"}
-          </Button>
-          {/* </Popconfirm> */}
-          <Popconfirm
-            placement="top"
-            title={"Are you sure"}
-            onConfirm={() => Reject(record.id)}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button
-              type="danger"
-              style={{ borderRadius: "7px", marginLeft: "10px" }}
-            >
-              {dil === "tm"
-                ? "Dis Aktiw et"
+  const columns =
+    widths > 500
+      ? [
+          {
+            title: dil === "tm" ? "№" : dil === "ru" ? "№" : "№",
+            dataIndex: "code",
+          },
+          {
+            title: dil === "tm" ? "Ady" : dil === "ru" ? "Имя" : "Name",
+            dataIndex: "name_ru",
+            render: (text, record) => (
+              <div>{dil === "ru" ? record?.name_ru : record?.name_en}</div>
+            ),
+          },
+          {
+            title:
+              dil === "tm"
+                ? "Düşündiriş"
                 : dil === "ru"
-                ? "He Активировать"
-                : "Dis Activete"}
-            </Button>
-          </Popconfirm>
-        </div>
-      ),
-    },
-  ];
+                ? "Описание"
+                : "Description",
+            dataIndex: "description_ru",
+            render: (text, record) => (
+              <div>
+                {dil === "ru" ? record.description_ru : record.description_en}
+              </div>
+            ),
+          },
+
+          {
+            title:
+              dil === "tm" ? "Surat" : dil === "ru" ? "Картина" : "Picture",
+            dataIndex: "uploaded",
+            render: (text, record) => (
+              <div className="flex overflow-x-auto">
+                {record.Imgs?.map((item) => {
+                  return (
+                    <img
+                      className="object-contain mr-2 h-[100px]"
+                      src={BASE_URL2 + item.img}
+                      alt="surat"
+                    />
+                  );
+                })}
+              </div>
+            ),
+          },
+
+          {
+            title:
+              dil === "tm" ? "Hereket" : dil === "ru" ? "Действие" : "Action",
+            render: (text, record) => (
+              <div className="flex">
+                {/* <Popconfirm placement="top" title={"Are you sure"} onConfirm={handleConfirm} okText="Yes" cancelText="No">  */}
+                <Button
+                  onClick={() => {
+                    setOpenChange(true);
+                    setOrder(record);
+                  }}
+                  type="primary"
+                  style={{ borderRadius: "7px" }}
+                >
+                  {dil === "tm"
+                    ? "Maglumat"
+                    : dil === "ru"
+                    ? "Информация"
+                    : "Information"}
+                </Button>
+                {/* </Popconfirm> */}
+                <Popconfirm
+                  placement="top"
+                  title={"Are you sure"}
+                  onConfirm={() => Reject(record.id)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button
+                    type="danger"
+                    style={{ borderRadius: "7px", marginLeft: "10px" }}
+                  >
+                    {dil === "tm"
+                      ? "Dis Aktiw et"
+                      : dil === "ru"
+                      ? "He Активировать"
+                      : "Dis Activete"}
+                  </Button>
+                </Popconfirm>
+              </div>
+            ),
+          },
+        ]
+      : [
+          {
+            title: dil === "tm" ? "Ady" : dil === "ru" ? "Имя" : "Name",
+            dataIndex: "name_ru",
+            render: (text, record) => (
+              <div>{dil === "ru" ? record?.name_ru : record?.name_en}</div>
+            ),
+          },
+
+          {
+            title:
+              dil === "tm" ? "Surat" : dil === "ru" ? "Картина" : "Picture",
+            dataIndex: "uploaded",
+            render: (text, record) => (
+              <div className="flex overflow-x-auto">
+                {record.Imgs?.map((item) => {
+                  return (
+                    <img
+                      className="object-contain mr-2 h-[100px]"
+                      src={BASE_URL2 + item.img}
+                      alt="surat"
+                    />
+                  );
+                })}
+              </div>
+            ),
+          },
+
+          {
+            title:
+              dil === "tm" ? "Hereket" : dil === "ru" ? "Действие" : "Action",
+            render: (text, record) => (
+              <div className="flex">
+                {/* <Popconfirm placement="top" title={"Are you sure"} onConfirm={handleConfirm} okText="Yes" cancelText="No">  */}
+                <Button
+                  onClick={() => {
+                    setOpenChange(true);
+                    setOrder(record);
+                  }}
+                  type="primary"
+                  style={{ borderRadius: "7px" }}
+                >
+                  <InfoCircleOutlined />
+                </Button>
+                {/* </Popconfirm> */}
+                <Popconfirm
+                  placement="top"
+                  title={"Are you sure"}
+                  onConfirm={() => Reject(record.id)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button
+                    type="danger"
+                    style={{ borderRadius: "7px", marginLeft: "10px" }}
+                  >
+                    <DeleteOutlined />
+                  </Button>
+                </Popconfirm>
+              </div>
+            ),
+          },
+        ];
 
   const onFileChange = (files) => {
     console.log(files);
@@ -294,7 +369,7 @@ const ActiveProducts = () => {
   return (
     <>
       <Drawer
-        width={500}
+        width={width > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -438,7 +513,7 @@ const ActiveProducts = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={width > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -680,7 +755,7 @@ const ActiveProducts = () => {
         </div>
       </Drawer>
       <Drawer
-        width={500}
+        width={width > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -702,7 +777,7 @@ const ActiveProducts = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={width > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}

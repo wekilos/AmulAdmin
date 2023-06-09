@@ -4,9 +4,12 @@ import { axiosInstance, BASE_URL } from "../../utils/axiosIntance";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
 
+import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import { useSizeComponents } from "../../components/sizeComponent";
 const Category = () => {
   const { dil } = useContext(SebedimContext);
   const history = useHistory();
+  const [widths, height] = useSizeComponents();
   const [data, setData] = useState([]);
   const [order, setCategoryEdit] = useState({});
   const [edit, setEdit] = useState(false);
@@ -42,20 +45,33 @@ const Category = () => {
       title: dil === "tm" ? "Hereket" : dil === "ru" ? "Действие" : "Action",
       render: (text, record) => (
         <div className="flex">
-          <Button
-            onClick={() => {
-              setEdit(true);
-              setCategoryEdit(record);
-            }}
-            type="primary"
-            style={{ borderRadius: "7px" }}
-          >
-            {dil === "tm"
-              ? "Maglumat"
-              : dil === "ru"
-              ? "Информация"
-              : "Information"}
-          </Button>
+          {widths > 500 ? (
+            <Button
+              onClick={() => {
+                setEdit(true);
+                setCategoryEdit(record);
+              }}
+              type="primary"
+              style={{ borderRadius: "7px" }}
+            >
+              {dil === "tm"
+                ? "Maglumat"
+                : dil === "ru"
+                ? "Информация"
+                : "Information"}
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                setEdit(true);
+                setCategoryEdit(record);
+              }}
+              type="primary"
+              style={{ borderRadius: "7px" }}
+            >
+              <InfoCircleOutlined />
+            </Button>
+          )}
 
           <Popconfirm
             placement="top"
@@ -64,12 +80,21 @@ const Category = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button
-              type="danger"
-              style={{ borderRadius: "7px", marginLeft: "10px" }}
-            >
-              {dil === "tm" ? "Öçürmek" : dil === "ru" ? "Удалит" : "Delete"}
-            </Button>
+            {widths > 500 ? (
+              <Button
+                type="danger"
+                style={{ borderRadius: "7px", marginLeft: "10px" }}
+              >
+                {dil === "tm" ? "Öçürmek" : dil === "ru" ? "Удалит" : "Delete"}
+              </Button>
+            ) : (
+              <Button
+                type="danger"
+                style={{ borderRadius: "7px", marginLeft: "10px" }}
+              >
+                <DeleteOutlined />
+              </Button>
+            )}
           </Popconfirm>
         </div>
       ),
@@ -124,7 +149,7 @@ const Category = () => {
   return (
     <>
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
@@ -170,7 +195,7 @@ const Category = () => {
       </Drawer>
 
       <Drawer
-        width={500}
+        width={widths > 500 ? 500 : 350}
         placement="right"
         closable={true}
         mask={true}
