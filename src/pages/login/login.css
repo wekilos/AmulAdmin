@@ -1,77 +1,82 @@
 .body {
-    background-color: #f2f6ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  background-color: #f2f6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .h2 {
-    color: #3a5783;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 25px;
-    margin: 0;
+  color: #3a5783;
+  width: 90%;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 25px;
+  margin: 0;
 }
 
 .p {
-    color: #92a3ba;
+  width: 90%;
+  color: #92a3ba;
 }
 
 .input {
-    width: 375px;
-    height: 35px;
-    margin: 0 5px 0 10px;
-    border: none;
+  width: 80%;
+  height: 35px;
+  margin: 0 5px 0 10px;
+  border: none;
 }
 
 .input::placeholder {
-    color: #7d91ad;
+  color: #7d91ad;
 }
 
 .input:active,
 .input:focus,
 .input:hover {
-    outline: none;
+  outline: none;
 }
 
 .button {
-    width: 465px;
-    height: 45px;
-    background-color: #267fff;
-    color: white;
-    font-size: 17px;
-    border: none;
-    border-radius: 10px;
+  width: 90%;
+  height: 45px;
+  background-color: #267fff;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
 }
 
 .icon {
-    font-size: 15px;
-    color: #267fff;
+  font-size: 15px;
+  color: #267fff;
 }
 
 .icon-lock {
-    font-size: 16px;
-    color: #267fff;
+  font-size: 16px;
+  color: #267fff;
 }
 
 .login-container {
-    background-color: white;
-    padding: 35px 35px 50px;
-    border-radius: 20px;
+  background-color: white;
+  padding: 35px 35px 50px;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 350px;
 }
 
 .input-container {
-    /* border: 0.3px solid #267fff; */
-    margin: 20px;
-    border-radius: 10px;
-    padding: 5px 20px;
-    box-shadow: 0px 0px 1px #549bff;
+  /* border: 0.3px solid #267fff; */
+  margin: 20px;
+  border-radius: 10px;
+  padding: 5px 20px;
+  box-shadow: 0px 0px 1px #549bff;
+  max-width: 500px;
 }
 
 .logo {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .bg-background {
-    border-radius: 20px;
+  border-radius: 20px;
 }

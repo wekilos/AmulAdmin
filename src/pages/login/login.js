@@ -11,9 +11,11 @@ import "./login.css";
 import { axiosInstance } from "../../utils/axiosIntance";
 import { useHistory } from "react-router-dom";
 import { SebedimContext } from "../../context/sebedim";
+import { useSizeComponents } from "../../components/sizeComponent";
 
 const Login = () => {
   const { dil } = useContext(SebedimContext);
+  const [widths, height] = useSizeComponents();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,7 +73,7 @@ const Login = () => {
             className="input"
             value={email}
             type="email"
-            style={{ width: "395px" }}
+            // style={{ width: "395px" }}
             placeholder={
               dil === "tm"
                 ? "Email girizin"
